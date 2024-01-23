@@ -1,0 +1,36 @@
+#include<bits/stdc++.h>
+using namespace std;
+
+
+int main(){
+    int n;
+    cin>>n;
+    
+    vector<int> a(n);
+    int maxi = INT_MIN;
+    
+    for(int i = 0; i<n; i++){
+    	cin>>a[i];
+    	maxi = max(maxi, a[i]);
+    }	
+	
+	int minCost = INT_MAX, ans_t;
+	for(int t = 1; t<=maxi; t++){
+		int cost = 0;
+		for(int i = 0; i<n; i++){
+			if(a[i]<t){
+				cost += abs(t-1 - a[i]);
+			}else if(a[i]>t){
+				cost += abs(t+1 - a[i]);
+			}	
+		}
+		
+		if(cost<minCost){
+			minCost = cost;
+			ans_t   = t;
+		}
+	}
+	
+	cout<<ans_t<<" "<<minCost<<endl;
+    return 0;
+}
